@@ -1,19 +1,34 @@
 //
 //  ContentView.swift
-//  video-cutter
+//  swift-learner
 //
 //  Created by Pedro ianky Rodrigues on 14/09/25.
 //
 
 import SwiftUI
+import AVKit
+import PhotosUI
 
 struct ContentView: View {
+    
+    @State private var player = AVPlayer(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!);
+    
+    @State private var selectedItem: [PhotosPickerItem] = [];
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(systemName: "widget.large")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            VideoPlayer(player: player)
+                .ignoresSafeArea();
+            
+            PhotosPicker(selection: $selectedItem, matching: .videos) {
+                Text("select something boy")
+            }
+            
+            
         }
         .padding()
     }
