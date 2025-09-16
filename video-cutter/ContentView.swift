@@ -14,6 +14,9 @@ struct ContentView: View {
     @State private var player = AVPlayer(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!);
     
     @State private var selectedItem: [PhotosPickerItem] = [];
+    @State private var isShowingPicker: Bool = false;
+    
+    @Environment(\.openWindow) private var openWindow;
     
     var body: some View {
         VStack {
@@ -26,6 +29,10 @@ struct ContentView: View {
             
             PhotosPicker(selection: $selectedItem, matching: .videos) {
                 Text("select something boy")
+            }
+            
+            Button("Open FilesManager") {
+                openWindow(id:"hell-new-window")
             }
             
             

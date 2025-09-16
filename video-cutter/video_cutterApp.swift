@@ -13,5 +13,10 @@ struct video_cutterApp: App {
         WindowGroup {
             ContentView()
         }
+        
+        WindowGroup(id: "hell-new-window") {
+            Text("Hello, World!")
+        }
+        
     }
 }
