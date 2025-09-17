@@ -15,7 +15,7 @@ struct video_cutterApp: App {
         }
         
         WindowGroup(id: "hell-new-window") {
-            Text("Hello, World!")
+            FileImporter()
         }
         
     }

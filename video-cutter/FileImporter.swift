@@ -1,36 +1,33 @@
-//
-//  FileImporter.swift
-//  video-cutter
-//
-//  Created by Pedro ianky Rodrigues on 16/09/25.
-//
 import SwiftUI
-
+import UniformTypeIdentifiers
 
 struct FileImporter: View {
     @State private var importing = false
-    
+    @State private var selectedFileUrl: URL?
+    @State private var isClicked = false;
+
     var body: some View {
-        Button("seide nada") {
-            
-        }
-        Button("Import") {
-            importing = true 
-        }
-        .fileImporter(
-            isPresented: $importing,
-            allowedContentTypes: [.plainText]
-        ) { result in
-            switch result {
-            case .success(let file):
-                print(file.absoluteString)
-            case .failure(let error):
-                print(error.localizedDescription)
+        VStack {
+            Text("\(isClicked)")
+            Button("import file"){
+                importing.toggle()
+            }
+            .fileImporter(isPresented: $importing,
+                          allowedContentTypes: [.image]
+            ) { result in
+                switch result{
+                case .success(let url):
+                    selectedFileUrl = url
+                case .failure(let error):
+                    print("error: \(error)")
+                }
+                
             }
         }
+        .padding()
     }
 }
 
-#Preview {
+#Preview{
     FileImporter()
 }
